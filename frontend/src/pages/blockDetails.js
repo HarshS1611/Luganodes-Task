@@ -1,8 +1,7 @@
 
-import Blocks from '../components/home/blocks';
+import BlockInfo from '../components/blocks/blockInfo';
 import Navbar from '../components/navbar';
-import SearchComponent from '../components/search';
-import Transactions from '../components/home/transactions';
+
 
 function BlockDetails() {
   return (
@@ -10,8 +9,8 @@ function BlockDetails() {
       <Navbar />
       <div className='px-60'>
         {/* <SearchComponent /> */}
-        <div className='flex gap-10'>
-          <Transactions /><Blocks />
+        <div className='flex gap-10 py-10'>
+          <BlockInfo/>
         </div>
       </div>
     </div>

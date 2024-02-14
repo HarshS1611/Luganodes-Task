@@ -88,12 +88,12 @@ const Blocks = () => {
                                     <BsBox className=' h-5 w-10 ' />
                                 </div>
                                 <div>
-                                    <p className="flex justify-start">
+                                    <Link to={`/blocks/${block.number}`} className="flex justify-start hover:underline">
 
                                         #{block.number}
-                                    </p>
+                                    </Link>
                                     <p className="flex justify-start">
-                                        Validated by {(block.miner).substring(0,4)}...{(block.miner).substring(38,block.miner.length)}
+                                    Validated by <p className='hover:underline'>{(block.miner).substring(0, 4)}...{(block.miner).substring(38, block.miner.length)}</p>
                                     </p>
                                 </div>
                             </td>

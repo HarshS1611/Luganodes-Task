@@ -87,12 +87,12 @@ const Transactions = () => {
                                     <FaExchangeAlt className=' h-5 w-10 ' />
                                 </div>
                                 <div>
-                                    <p className="flex justify-start underline">
+                                    <Link to={`/txns/${transact.hash}`} className="flex justify-start hover:underline">
 
                                     {(transact.hash).substring(0,7)}...{(transact.hash).substring(60,transact.hash.length)}
-                                    </p>
-                                    <p className="flex justify-start">
-                                    from {(transact.from).substring(0,4)}...{(transact.from).substring(38,transact.from.length)}  to {(transact.to).substring(0,4)}...{(transact.to).substring(38,transact.to.length)}
+                                    </Link>
+                                    <p className="flex gap-2 justify-start">
+                                    from <p className='hover:underline'>{(transact.from).substring(0,4)}...{(transact.from).substring(38,transact.from.length)}</p>  to <p className='hover:underline'>{(transact.to).substring(0,4)}...{(transact.to).substring(38,transact.to.length)}</p>
                                     </p>
                                 </div>
                             </td>

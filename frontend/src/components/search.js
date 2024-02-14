@@ -104,11 +104,11 @@ function SearchComponent() {
             });
     }
 
-    useEffect(() => {
-        if (!latestBlock) {
-            GetInfo();
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (!latestBlock) {
+    //         GetInfo();
+    //     }
+    // }, []);
 
     console.log(price, supply)
 

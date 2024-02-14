@@ -114,7 +114,7 @@ function MainSection() {
     console.log(price, supply)
 
     return (
-        <div className="flex flex-col gap-4 text-white py-24">
+        <div className="flex flex-col gap-4 text-white py-10">
             <p className='flex justify-start text-[30px] font-semibold'>The Ronin Blockchain Explorer</p>
 
             <SearchComponent />
