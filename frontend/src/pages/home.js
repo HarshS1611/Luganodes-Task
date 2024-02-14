@@ -2,6 +2,7 @@
 import Blocks from '../components/blocks';
 import Navbar from '../components/navbar';
 import SearchComponent from '../components/search';
+import Transactions from '../components/transactions';
 
 function Home() {
   return (
@@ -10,7 +11,7 @@ function Home() {
       <div className='px-60'>
         <SearchComponent />
         <div className='flex gap-10'>
-          <Blocks /><Blocks />
+          <Transactions /><Blocks />
         </div>
       </div>
     </div>

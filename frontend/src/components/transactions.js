@@ -3,7 +3,7 @@ import { FaExchangeAlt } from "react-icons/fa";
 
 import axios from 'axios';
 
-const Blocks = () => {
+const Transactions = () => {
 
     const [blocks, setBlocks] = useState([]);
 
@@ -75,7 +75,7 @@ const Blocks = () => {
             <table class="table-auto bg-gray-800 rounded-lg text-white w-full ">
                 <thead className="rounded-lg border w-full">
                     <tr className="  w-full">
-                        <th className="flex justify-start py-5 ml-5 ">Latest Blocks</th>
+                        <th className="flex justify-start py-5 ml-5 ">Latest Transactions</th>
                         <th className="py-5 ">View All</th>
                     </tr>
                 </thead>
@@ -111,4 +111,4 @@ const Blocks = () => {
     )
 }
 
-export default Blocks;
+export default Transactions;

@@ -3,8 +3,19 @@ import React, { useState } from 'react';
 
 
 const Navbar = () => {
+    const [price, setPrice] = useState(0);
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const options = {
+        method: 'GET',
+        headers: { accept: 'application/json', api_key: 'tm-fdc9c1b7-1135-48f8-a7cf-69a949381914' }
+    };
+
+    fetch('https://api.tokenmetrics.com/v2/price-prediction?symbol=RON&limit=1&page=0', options)
+        .then(response => response.json())
+        .then(response => console.log(setPrice(response.data[0]['FORECASTS_FOR_NEXT_7_DAYS']['1-day-forecast'])))
+        .catch(err => console.error(err));
 
     return (
         <>
@@ -18,7 +29,7 @@ const Navbar = () => {
                             <div class="flex mt-4 font-lab-grotesque cursor-pointer gap-1 items-center lg:mt-2 text-gray-500 mr-4 pb-2 "
 
                             >
-                                Ronin Price : <p className='text-sky-700'> $ 2.59 </p>
+                                Ronin Price : <p className='text-sky-700'> ${price && (price+0.065).toLocaleString().substring(0, 4)} </p>
                             </div>
                             <div class="flex block mt-4 font-lab-grotesque cursor-pointer gap-1 items-center lg:mt-2 text-gray-500 mr-4 pb-2"
 
