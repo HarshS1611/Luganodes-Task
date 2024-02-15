@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaExchangeAlt } from "react-icons/fa";
 import { MdAccountBalanceWallet } from "react-icons/md";
+import { IoIosReturnLeft } from "react-icons/io";
 
 function SearchComponent() {
 
@@ -157,25 +158,30 @@ function SearchComponent() {
                         </ul>
                     </div> */}
 
-                    <div class="relative w-fit">
+                    <div class="relative w-[80%] lg:w-[70%]">
 
                         <input type="search" id="default-search"
-                            className="block rounded-xl w-96 p-4  text-sm text-gray-900 border border-gray-300  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search by Address / Txn Hash / Block etc."
+                            className="block rounded-xl w-full p-4 text-xs lg:text-sm text-gray-900 border border-gray-300  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search by Address / Txn Hash / Block etc."
                             value={searchQuery}
                             onChange={(e) => {
                                 setSearchQuery(e.target.value);
                                 handleSearchChange();
                             }} required />
 
-                        <div class="text-gray-800 absolute px-2 end-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"><svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg></div>
+                        <div className="flex items-center text-gray-800 absolute px-2 end-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2">
+                            {searchQuery ? (<svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            </svg>):(<svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            </svg>)}
+                            </div>
+
                     </div>
 
                 </div>
                 {searchQuery && <div>{searchResult ? (
                     <div className="flex justify-start w-full text-white   shadow">
-                        <div className='flex justify-start bg-gray-800 rounded-r-lg rounded-b-lg p-4'>
+                        <div className='flex justify-start bg-gray-800 rounded-r-lg rounded-b-lg'>
                             <div className='flex  items-start w-full'>{searchType === 'block' ? (<>
                                 <Link to={`/blocks/${searchResult.number}`} className="flex py-5 flex-row gap-4 justify-start mx-5">
                                     <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>
@@ -190,19 +196,26 @@ function SearchComponent() {
 
 
                                     </div>
+                                    <div className='flex items-center'>
+                                        <IoIosReturnLeft className='font-bold h-6 w-6' />
+                                    </div>
 
                                 </Link></>)
-                                : (<>{searchType === 'address' ? (<Link to={`/address/${searchResult.address}`} className='flex items-center gap-5'><MdAccountBalanceWallet/> <p>{searchResult.address}</p></Link>) : (<Link to={`/txns/${searchResult.hash}`} className="flex py-5 flex-row gap-4 justify-start mx-5">
+                                : (<>{searchType === 'address' ? (<Link to={`/address/${searchResult.address}`} className='flex items-center p-4 gap-5'><MdAccountBalanceWallet /> <p>{searchResult.address}</p><div className='flex items-center'>
+                                    <IoIosReturnLeft className='font-bold h-6 w-6' />
+                                </div></Link>) : (<Link to={`/txns/${searchResult.hash}`} className="flex py-5 flex-row gap-6 justify-start mx-5">
                                     <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>
                                         <FaExchangeAlt className=' h-5 w-10 ' />
                                     </div>
                                     <div>
                                         <Link to={`/txns/${searchResult.hash}`} className="flex justify-start hover:underline">
 
-                                            {(searchResult.hash).substring(0, 7)}...{(searchResult.hash).substring(60, searchResult.hash.length)}
-                                        </Link>
+                                            {searchResult && searchResult.hash && searchResult.hash.length > 0 && (searchResult.hash || "Loading").substring(0, 7)}...{(searchResult.hash || "Loading").substring(60, searchResult.hash && searchResult.hash.length)}                                        </Link>
                                         <p className='text-xs'>{new Date(searchResult.timestamp * 1000).toLocaleString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short', timeZone: 'Asia/Kolkata' })}</p>
 
+                                    </div>
+                                    <div className='flex items-center'>
+                                        <IoIosReturnLeft className='font-bold h-6 w-6' />
                                     </div>
                                 </Link>)}</>)}</div></div>
                     </div>

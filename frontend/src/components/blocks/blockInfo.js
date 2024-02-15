@@ -1,13 +1,15 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 import { FaArrowDown } from "react-icons/fa";
 
 const BlockInfo = () => {
 
 
     const [blocks, setblocks] = useState([]);
+    const { blockID } = useParams();
+
 
     const timeAgo = (timestamp) => {
         const seconds = Math.floor((new Date() - new Date(timestamp * 1000)) / 1000);
@@ -41,7 +43,7 @@ const BlockInfo = () => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'https://api-gateway.skymavis.com/explorer/block/32033892',
+            url: `https://api-gateway.skymavis.com/explorer/block/${blockID}`,
             headers: {
                 'Accept': 'application/json',
                 'X-API-KEY': 'ZGjxZj0JZN63VwlAnEzfExGHR6DbfO57'

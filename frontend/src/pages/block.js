@@ -7,7 +7,7 @@ const AllBlocks = () => {
     return (
     <div className="home">
       <Navbar />
-      <div className='px-60  py-10'>
+      <div className='px-10 lg:px-20 xl:px-60  py-10'>
         <SearchComponent />
         <div className='flex flex-col gap-10 py-10'>
           <Blocks />

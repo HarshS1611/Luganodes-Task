@@ -6,6 +6,8 @@ import axios from 'axios';
 const Blocks = () => {
 
     const [blocks, setBlocks] = useState([]);
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const timeAgo = (timestamp) => {
         const seconds = Math.floor((new Date() - new Date(timestamp * 1000)) / 1000);
@@ -34,11 +36,14 @@ const Blocks = () => {
         return Math.floor(seconds) + " secs ago";
     };
 
-    const BlockAPI = () => {
+    const BlockAPI = (page) => {
+
+        console.log(page)
+
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'https://api-gateway.skymavis.com/explorer/blocks?from=1&size=10',
+            url: `https://api-gateway.skymavis.com/skynet/ronin/blocks?limit=20&offset=${20*page}`,
             headers: {
                 'Accept': 'application/json',
                 'X-API-Key': 'ZGjxZj0JZN63VwlAnEzfExGHR6DbfO57'
@@ -48,7 +53,8 @@ const Blocks = () => {
 
         axios(config)
             .then((response) => {
-                setBlocks(response.data);
+                setBlocks(response.data.result);
+                setTotalPages(Math.ceil(response.data.result.paging.total / 20));
 
             })
             .catch((error) => {
@@ -61,20 +67,18 @@ const Blocks = () => {
     useEffect(() => {
 
         if (blocks.length <= 0) {
-            BlockAPI();
+            BlockAPI(currentPage);
         }
+    }, [blocks,currentPage]);
+
+    console.log(blocks,currentPage,totalPages)
 
 
-
-
-    }, [blocks]);
-
-    console.log(blocks)
     return (
         <>
             <div className='text-white flex flex-col justify-start w-full'>
                 <p className='flex justify-start text-4xl font-bold'>Blocks</p>
-                <p className='flex justify-start'>Total {blocks && blocks.total && (blocks.total).toLocaleString()} transactions (Show 10,000 latest records)</p>
+                <p className='flex justify-start'>Total {blocks && blocks.paging && (blocks.paging.total)} transactions (Show 10,000 latest records)</p>
             </div>
             <table class="table-auto bg-gray-800 rounded-lg text-white w-full ">
                 <thead className="rounded-lg border-b-[1px] w-full">
@@ -91,9 +95,9 @@ const Blocks = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {blocks && blocks.results && blocks.results.map((block, index) => {
+                    {blocks && blocks.items && blocks.items.map((block, index) => {
                         // console.log(block)
-                        return (<tr key={index} className="border-b-[0.7px] border-black  px-4">
+                        return (<tr key={index} className="border-b-[0.7px] border-black text-sm lg:text-lg px-4">
                             <td className="flex w-fit gap-4 my-5 items-center ml-5">
                                 <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>
                                     <BsBox className=' h-5 w-10 ' />
@@ -106,15 +110,15 @@ const Blocks = () => {
                             </td>
                             <td>
                                 <div className='flex gap-2 justify-center'>
-                                Validated by <p className='hover:underline'>{(block.miner).substring(0, 4)}...{(block.miner).substring(38, block.miner.length)}</p>
+                                Validated by <p className='hover:underline'>{(block.coinbase).substring(0, 4)}...{(block.coinbase).substring(38, block.coinbase.length)}</p>
 
                                 </div>
                             </td>
                             <td>
-                                {block.transactions} TXS
+                                {block.transactions.length} TXS
                             </td>
                             <td>
-                                {(block.gas_used).toLocaleString()}
+                                {(block.gasUsed)}
                             </td>
                             <td>
                                 <p>{timeAgo(block.timestamp)}</p>
@@ -125,7 +129,19 @@ const Blocks = () => {
 
 
                 </tbody>
-            </table></>
+            </table>
+            <div className="flex justify-center mt-4">
+                {blocks && Array.from({ length: totalPages }, (_, index) => index + 1).slice(0,10).map((page) => (
+                    <button
+                        key={page}
+                        className={`mx-1 px-3 py-1 rounded-lg ${currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                        onClick={() => {setCurrentPage(page);BlockAPI(page)}}
+                    >
+                        {page}
+                    </button>
+                ))}
+            </div> 
+            </>
     )
 }
 

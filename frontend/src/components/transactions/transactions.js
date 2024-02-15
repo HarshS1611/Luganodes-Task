@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 const Transactions = () => {
 
     const [transactions, setTransactions] = useState([]);
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const timeAgo = (timestamp) => {
         const seconds = Math.floor((new Date() - new Date(timestamp * 1000)) / 1000);
@@ -34,21 +36,24 @@ const Transactions = () => {
         return Math.floor(seconds) + " secs ago";
     };
 
-    const BlockAPI = () => {
+    const BlockAPI = (page) => {
+
+        console.log(page)
 
         let config = {
             method: 'get',
-            maxBodyLength: Infinity,
-            url: 'https://api-gateway.skymavis.com/explorer/txs?size=10',
-            headers: {
-                'Accept': 'application/json',
-                'X-API-KEY': 'ZGjxZj0JZN63VwlAnEzfExGHR6DbfO57'
+          maxBodyLength: Infinity,
+            url: `https://api-gateway.skymavis.com/skynet/ronin/txs?limit=20&offset=${20*page}`,
+            headers: { 
+              'Accept': 'application/json', 
+              'X-API-Key': 'ZGjxZj0JZN63VwlAnEzfExGHR6DbfO57'
             }
-        };
+        }
 
         axios(config)
             .then((response) => {
-                setTransactions(response.data)
+                setTransactions(response.data.result)
+                setTotalPages(Math.ceil(response.data.result.paging.total / 20));
             })
             .catch((error) => {
                 console.log(error);
@@ -60,67 +65,64 @@ const Transactions = () => {
     useEffect(() => {
 
         if (transactions.length <= 0) {
-            BlockAPI();
+            BlockAPI(currentPage);
         }
+    }, [transactions,currentPage]);
 
-
-
-
-    }, [transactions]);
-
-    console.log(transactions)
+    console.log(transactions,currentPage,totalPages)
     return (
         <>
-        <div className='text-white flex flex-col justify-start w-full'>
-            <p className='flex justify-start text-4xl font-bold'>Transactions</p>
-            <p className='flex justify-start'>Total {transactions && transactions.total && (transactions.total).toLocaleString()} transactions (Show 10,000 latest records)</p>
-        </div>
-            <table class="table-auto bg-gray-800 rounded-xl text-white w-full ">
+            <div className='text-white flex flex-col justify-start w-full'>
+                <p className='flex justify-start text-2xl lg:text-4xl font-bold'>Transactions</p>
+                <p className='flex justify-start'>Total {transactions && transactions.paging && transactions.paging.total && (transactions.paging.total)} transactions (Show 10,000 latest records)</p>
+            </div>
+            
+            <table class="table-auto bg-gray-800 rounded-xl text-white xl:w-full ">
                 <thead className="border-b-[1px] w-full">
-                    <tr className="text-gray-400 w-max">
-                        <th className="flex  py-2 w-fit justify-start ml-5 "> Transaction Hash</th>
+                    <tr className="text-gray-400 w-fit">
+                        <th className="flex  py-2 w-fit justify-start  ml-5 "> Transaction Hash</th>
                         <th className=""> Block</th>
 
                         <th className=""> From</th>
 
                         <th className=" ">  To</th>
 
-                        <th className=""> Value</th>
+                        <th className=""> Gas Price</th>
                         <th className=""> Age</th>
 
 
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions && transactions.results && transactions.results.map((transact, index) => {
+                    {transactions && transactions.items && transactions.items.map((transact, index) => {
                         // console.log(block)
-                        return (<tr key={index} className="border-b-[0.7px] mx-5 border-black">
+                        return (<tr key={index} className="border-b-[0.7px] text-sm lg:text-md xl:text-lg xl:mx-5 border-black">
                             <td className="flex w-fit gap-4 my-5 items-center ml-2">
                                 <div className='flex  items-center border-[0.5px]  h-10 bg-black rounded-full'>
                                     <FaExchangeAlt className=' h-5 w-10 ' />
                                 </div>
-                                <Link to={`/txns/${transact.hash}`} className='hover:underline'>
+                                <Link to={`/txns/${transact.transactionHash}`} className='hover:underline'>
 
-                                        {(transact.hash).substring(0,7)}...{(transact.hash).substring(60,transact.hash.length)}
+                                    {(transact.transactionHash).substring(0, 7)}...{(transact.transactionHash).substring(60, transact.transactionHash.length)}
 
                                 </Link>
                             </td>
                             <td>
 
-                            <Link to={`/blocks/${transact.block_number}`} className='hover:underline'>{transact.block_number}</Link>
+                                <Link to={`/blocks/${transact.blockNumber}`} className='hover:underline'>{transact.blockNumber}</Link>
                             </td>
                             <td>
-                                <p className='hover:underline'>{(transact.from).substring(0,7)}...{(transact.from).substring(35,transact.from.length)}</p>
+                                <p className='hover:underline'>{(transact.from).substring(0, 4)}...{(transact.from).substring(38, transact.from.length)}</p>
                             </td>
                             <td>
-                                <p className='hover:underline'>{(transact.to).substring(0,7)}...{(transact.to).substring(35,transact.to.length)}</p>
+                                <p className='hover:underline'>{(transact.to).substring(0, 4)}...{(transact.to).substring(38, transact.to.length)}</p>
                             </td>
                             <td>
-                                {(parseFloat(transact.value, 16) / 1e18)} RON
+                                {parseInt(transact.gasPrice, 16)} GWEI
                             </td>
                             <td>
 
-                                <p>{timeAgo(transact.timestamp)}</p>
+                                <p>{timeAgo(transact.blockTime)}</p>
                             </td>
                         </tr>)
                     }
@@ -128,7 +130,20 @@ const Transactions = () => {
 
 
                 </tbody>
-            </table></>
+            </table>
+
+            <div className="flex justify-center mt-4">
+                {transactions && Array.from({ length: totalPages }, (_, index) => index + 1).slice(0,10).map((page) => (
+                    <button
+                        key={page}
+                        className={`mx-1 px-3 py-1 rounded-lg ${currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                        onClick={() => {setCurrentPage(page);BlockAPI(page)}}
+                    >
+                        {page}
+                    </button>
+                ))}
+            </div>
+            </>
     )
 }
 

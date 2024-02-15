@@ -1,13 +1,15 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaArrowDown } from "react-icons/fa";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const TransactionInfo = () => {
 
 
     const [transactions, setTransactions] = useState([]);
+    const { txnHash } = useParams();
 
     const timeAgo = (timestamp) => {
         const seconds = Math.floor((new Date() - new Date(timestamp * 1000)) / 1000);
@@ -41,7 +43,7 @@ const TransactionInfo = () => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'https://api-gateway.skymavis.com/explorer/tx/0x9dab05666dd07461451d3002cce594270865c8291747621ae6c5635c3c763723',
+            url: `https://api-gateway.skymavis.com/explorer/tx/${txnHash}`,
             headers: {
                 'Accept': 'application/json',
                 'X-API-KEY': 'ZGjxZj0JZN63VwlAnEzfExGHR6DbfO57'
@@ -81,7 +83,7 @@ const TransactionInfo = () => {
                 <div className='py-5 '>
                     <div className='flex flex-col bg-gray-800  justify-start rounded-xl py-2 px-5 border-black shadow-lg text-white'>
                         <div className='flex justify-between border-gray-600 border-b-[1px]'>
-                            <div className='text-lg py-2 font-semibold'>Transaction Details</div>
+                            <div className='text-lg py-2 font-semibold'>Transaction Details </div>
                             <div className='text-sm py-1'> {timeAgo(transactions.timestamp)}
                                 ∙ {new Date(transactions.timestamp * 1000).toLocaleString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short', timeZone: 'Asia/Kolkata' })}
                             </div>
@@ -95,23 +97,23 @@ const TransactionInfo = () => {
                         <div className='border-b-[1px] border-gray-600'>
                             <div className='flex py-4 justify-start gap-10'> RON Transferred <p>{(parseFloat(transactions.value, 16) / 1e18)} RON</p> </div>
                         </div>
-                        <summary className='relative flex justify-start py-4 border-gray-600 border-b-[1px]'>
-                            {/* <div>Advance Details</div> */}
-                            <details className=''>
-                                <div className='flex py-4 justify-start gap-10'>Block <p>{transactions.block_number}</p></div>
-                                <div className='flex py-4 justify-start gap-10'>Gas Price <p>{transactions.gas_price} GWEI</p></div>
-                                <div className='flex py-4 justify-start gap-10'>Nonce <p>{transactions.nonce}</p></div>
-                                <div className='flex py-4 justify-start gap-10'>Fee <p>Free</p></div>
-                                <div className='flex py-4 justify-start gap-10'>Gas Used <p>{transactions.gas_used}</p></div>
+                        <details className='relative flex justify-start py-4 border-gray-600 border-b-[1px]'>
+                            <summary className='flex justify-start items-center gap-2'>Advance Details <IoIosArrowDown className='text-white' /></summary>
+                            <div className='border-[1px] rounded-xl border-gray-600 my-5 p-5'>
+                                <div className='flex py-4 justify-start gap-16'>Block : <p>{transactions.block_number}</p></div>
+                                <div className='flex py-4 justify-start gap-10'>Gas Price : <p>{transactions.gas_price} GWEI</p></div>
+                                <div className='flex py-4 justify-start gap-16'>Nonce : <p>{transactions.nonce}</p></div>
+                                <div className='flex py-4 justify-start gap-20'>Fee : <p>Free</p></div>
+                                <div className='flex py-4 justify-start gap-8'>Gas Used : <p>{transactions.gas_used}</p></div>
 
-                            </details>
-                        </summary>
-                        <div className=''>
-                            Logs
-                            <div>{transactions && transactions.logs && transactions.logs.map((log, idx) => (
-                                <div key={idx}>
-                                <div>{log.address}</div>
-                                <div>{log.topics[0]}</div>
+                            </div>
+                        </details>
+                        <div className='py-5'>
+                            <div className='flex justify-start'>Logs</div>
+                            <div className='flex flex-col gap-5 border-[1px] border-gray-600 rounded-lg my-5 p-5 overflow-x-auto text-sm xl:text-md'>{transactions && transactions.logs && transactions.logs.map((log, idx) => (
+                                <div className='flex flex-col  justify-start' key={idx}>
+                                    <div className='flex justify-start'>Address : {log.address}</div>
+                                    <div className='flex lg:gap-4'> Topics: <div className='flex flex-col'>{log.topics.map((t, i) => (<div key={i} className='flex'>{i} : {t}</div>))}</div></div>
                                 </div>
                             ))}</div>
                         </div>

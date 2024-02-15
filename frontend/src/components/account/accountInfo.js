@@ -125,7 +125,7 @@ const AccountInfo = () => {
                 <tbody>
                     {transactions && transactions.results && transactions.results.map((transact, index) => {
                         // console.log(block)
-                        return (<tr key={index} className="border-b-[0.7px] mx-5 border-black">
+                        return (<tr key={index} className="border-b-[0.7px] mx-5 border-black text-xs lg:text-sm xl:text-lg">
                             <td className="flex w-fit gap-4 my-5 items-center ml-2">
                                 <div className='flex  items-center border-[0.5px]  h-10 bg-black rounded-full'>
                                     <FaExchangeAlt className=' h-5 w-10 ' />
@@ -141,10 +141,10 @@ const AccountInfo = () => {
                                 <Link to={`/blocks/${transact.block_number}`} className='hover:underline'>{transact.block_number}</Link>
                             </td>
                             <td>
-                                <p className='hover:underline'>{(transact.from).substring(0, 7)}...{(transact.from).substring(35, transact.from.length)}</p>
+                                <p className='hover:underline'>{(transact.from).substring(0, 4)}...{(transact.from).substring(35, transact.from.length)}</p>
                             </td>
                             <td>
-                                <p className='hover:underline'>{(transact.to).substring(0, 7)}...{(transact.to).substring(35, transact.to.length)}</p>
+                                <p className='hover:underline'>{(transact.to).substring(0, 4)}...{(transact.to).substring(35, transact.to.length)}</p>
                             </td>
                             <td>
                                 {(parseFloat(transact.value, 16) / 1e18)} RON
@@ -159,7 +159,8 @@ const AccountInfo = () => {
 
 
                 </tbody>
-            </table></>
+            </table>
+            </>
     )
 }
 
