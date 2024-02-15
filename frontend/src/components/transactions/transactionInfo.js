@@ -77,25 +77,25 @@ const TransactionInfo = () => {
                     <p className='flex justify-start text-4xl font-bold'>Transaction </p>
                     <p className='flex items-center  px-4 text-md bg-green-600 rounded-full'>Success</p>
                 </div>
-                <p className='flex justify-start text-gray-400'> {transactions && transactions.hash && (transactions.hash)}</p>
-                <div className='py-5'>
-                    <div className='flex flex-col justify-start rounded-xl py-2 px-5 border-white border-[1px] text-white'>
-                        <div className='flex justify-between'>
-                            <div className='text-lg font-semibold'>SubmitBlockReward</div>
-                            <div className='text-sm'> {timeAgo(transactions.timestamp)}
+                <p className='flex justify-start  text-gray-400'> {transactions && transactions.hash && (transactions.hash)}</p>
+                <div className='py-5 '>
+                    <div className='flex flex-col bg-gray-800  justify-start rounded-xl py-2 px-5 border-black shadow-lg text-white'>
+                        <div className='flex justify-between border-gray-600 border-b-[1px]'>
+                            <div className='text-lg py-2 font-semibold'>Transaction Details</div>
+                            <div className='text-sm py-1'> {timeAgo(transactions.timestamp)}
                                 ∙ {new Date(transactions.timestamp * 1000).toLocaleString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short', timeZone: 'Asia/Kolkata' })}
                             </div>
                         </div>
-                        <div className='my-5 border-b-[1px]'>
+                        <div className='my-5 border-b-[1px] border-gray-600'>
                             <div className='flex py-4 justify-start gap-6'>From <p>{transactions.from}</p></div>
                             <div className=''><FaArrowDown /></div>
                             <div className='flex py-4 justify-start gap-10'>To <p>{transactions.to}</p></div>
 
                         </div>
-                        <div className='border-b-[1px]'>
+                        <div className='border-b-[1px] border-gray-600'>
                             <div className='flex py-4 justify-start gap-10'> RON Transferred <p>{(parseFloat(transactions.value, 16) / 1e18)} RON</p> </div>
                         </div>
-                        <summary className='relative flex justify-start py-4 border-b-[1px]'>
+                        <summary className='relative flex justify-start py-4 border-gray-600 border-b-[1px]'>
                             {/* <div>Advance Details</div> */}
                             <details className=''>
                                 <div className='flex py-4 justify-start gap-10'>Block <p>{transactions.block_number}</p></div>
@@ -106,7 +106,7 @@ const TransactionInfo = () => {
 
                             </details>
                         </summary>
-                        <div className='border-b-[1px]'>
+                        <div className=''>
                             Logs
                             <div>{transactions && transactions.logs && transactions.logs.map((log, idx) => (
                                 <div key={idx}>

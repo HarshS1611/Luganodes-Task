@@ -167,9 +167,9 @@ function SearchComponent() {
                                 handleSearchChange();
                             }} required />
 
-                        <button class="text-white absolute px-2 end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <div class="text-gray-800 absolute px-2 end-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"><svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg></button>
+                        </svg></div>
                     </div>
 
                 </div>
@@ -192,7 +192,7 @@ function SearchComponent() {
                                     </div>
 
                                 </Link></>)
-                                : (<>{searchType === 'address' ? (<Link className='flex items-center gap-5'><MdAccountBalanceWallet/> <p>{searchResult.address}</p></Link>) : (<Link to={`/txns/${searchResult.hash}`} className="flex py-5 flex-row gap-4 justify-start mx-5">
+                                : (<>{searchType === 'address' ? (<Link to={`/address/${searchResult.address}`} className='flex items-center gap-5'><MdAccountBalanceWallet/> <p>{searchResult.address}</p></Link>) : (<Link to={`/txns/${searchResult.hash}`} className="flex py-5 flex-row gap-4 justify-start mx-5">
                                     <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>
                                         <FaExchangeAlt className=' h-5 w-10 ' />
                                     </div>

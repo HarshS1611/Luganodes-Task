@@ -92,9 +92,9 @@ const Blocks = () => {
 
                                         #{block.number}
                                     </Link>
-                                    <p className="flex justify-start">
+                                    <Link to={`/address/${block.miner}`} className="flex gap-2 justify-start">
                                     Validated by <p className='hover:underline'>{(block.miner).substring(0, 4)}...{(block.miner).substring(38, block.miner.length)}</p>
-                                    </p>
+                                    </Link>
                                 </div>
                             </td>
                             <td>

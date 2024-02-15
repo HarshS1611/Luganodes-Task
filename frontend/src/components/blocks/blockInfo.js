@@ -79,7 +79,7 @@ const BlockInfo = () => {
                 </div>
                 <p className='flex justify-start text-gray-400'> {blocks && blocks.hash && (blocks.hash)}</p>
                 <div className='py-5'>
-                    <div className='flex flex-col justify-start rounded-xl py-2 px-5 border-white border-[1px] text-white'>
+                    <div className='flex flex-col justify-start rounded-xl py-2 px-5 border-gray-600 shadow-lg border-[1px] bg-gray-800 text-white'>
                         <div className='flex justify-between py-5 border-b-[1px]'>
                             <div className='text-lg font-semibold'>Block Detail</div>
                             <div className='text-sm'> {timeAgo(blocks.timestamp)}

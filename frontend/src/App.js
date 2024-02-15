@@ -5,6 +5,7 @@ import BlockDetails from './pages/blockDetails';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AllTransactions from './pages/transaction';
 import AllBlocks from './pages/block';
+import AccountDetails from './pages/accountDetails';
 function App() {
   return (
     <BrowserRouter>
@@ -13,9 +14,9 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path='/txns' element={<AllTransactions />} />
           <Route path='/blocks' element={<AllBlocks />} />
-          <Route path="/txns/:id" element={<TransactionDetails />} />
-          <Route path="/blocks/:id" element={<BlockDetails />} />
-
+          <Route path="/txns/:txnHash" element={<TransactionDetails />} />
+          <Route path="/blocks/:blockID" element={<BlockDetails />} />
+          <Route path='/address/:address' element={<AccountDetails/>} />
         </Routes>
       </div></BrowserRouter>
   );

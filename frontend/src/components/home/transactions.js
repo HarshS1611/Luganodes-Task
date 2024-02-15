@@ -92,7 +92,7 @@ const Transactions = () => {
                                     {(transact.hash).substring(0,7)}...{(transact.hash).substring(60,transact.hash.length)}
                                     </Link>
                                     <p className="flex gap-2 justify-start">
-                                    from <p className='hover:underline'>{(transact.from).substring(0,4)}...{(transact.from).substring(38,transact.from.length)}</p>  to <p className='hover:underline'>{(transact.to).substring(0,4)}...{(transact.to).substring(38,transact.to.length)}</p>
+                                    from <Link to={`/address/${transact.from}`}  className='hover:underline'>{(transact.from).substring(0,4)}...{(transact.from).substring(38,transact.from.length)}</Link>  to <Link to={`/address/${transact.to}`}  className='hover:underline'>{(transact.to).substring(0,4)}...{(transact.to).substring(38,transact.to.length)}</Link>
                                     </p>
                                 </div>
                             </td>

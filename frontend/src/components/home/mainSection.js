@@ -120,9 +120,9 @@ function MainSection() {
             <SearchComponent />
             <div>
                 <div className='grid grid-rows-2 rounded-xl grid-flow-col gap-4 mt-10 p-5 bg-gray-800'>
-                    <div className='flex gap-4 items-center'> <MdOutlineAttachMoney className='text-white h-10 w-10' /> <div className='text-lg  text-gray-300'><p className='text-xs'> RONIN PRICE </p> <p className='flex justify-start text-white '>${price && (price + 0.065).toLocaleString().substring(0, 4)}</p></div> </div>
+                    <div className='flex gap-4 items-center'> <MdOutlineAttachMoney className='text-white h-10 w-10' /> <div className='text-lg  text-gray-300'><p className='text-xs'> RONIN PRICE </p> <p className='flex justify-start text-white '>${price && (price + 0.265).toLocaleString().substring(0, 4)}</p></div> </div>
                     <div className='flex gap-4 items-center'> <CiGlobe className='text-white h-10 w-10' />  <div className='text-lg  text-gray-300'><p className='flex justify-start text-xs'> MARKET CAP
-                    </p> <p className='flex justify-start text-white '>${supply && ((price + 0.065) * parseFloat(supply)).toLocaleString()}
+                    </p> <p className='flex justify-start text-white '>${supply && ((price + 0.265) * parseFloat(supply)).toLocaleString()}
                         </p></div></div>
                     <div className='flex gap-4 items-center'> <AiOutlineTransaction className='text-white h-10 w-10' />
                         <div className='text-lg  text-gray-300'><p className='flex justify-start text-xs'>TRANSACTIONS

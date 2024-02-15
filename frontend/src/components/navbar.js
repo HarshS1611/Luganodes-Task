@@ -29,12 +29,12 @@ const Navbar = () => {
                             <div class="flex mt-4 font-lab-grotesque cursor-pointer gap-1 items-center lg:mt-2 text-gray-500 mr-4 pb-2 "
 
                             >
-                                Ronin Price : <p className='text-sky-700'> ${price && (price+0.065).toLocaleString().substring(0, 4)} </p>
+                                Ronin Price : <p className='text-sky-700'> ${price && (price+0.265).toLocaleString().substring(0, 4)} </p>
                             </div>
                             <div class="flex block mt-4 font-lab-grotesque cursor-pointer gap-1 items-center lg:mt-2 text-gray-500 mr-4 pb-2"
 
                             >
-                                Gas : <p className='text-sky-700'>61 Gwei </p>
+                                Gas : <p className='text-sky-700'>0 Gwei </p>
                             </div>
 
                         </div>
