@@ -131,7 +131,7 @@ function MainSection() {
                     </p> <p className='flex justify-start text-white '>{latestBlock && latestBlock.number.toLocaleString()}</p></div>  </div>
                     <div className='flex gap-4 items-center'><GrDocumentVerified className='text-white h-10 w-10' />  <div className='text-lg  text-gray-300'><p className='text-xs'> TOTAL ADDRESSES
                     </p> <p className='flex justify-start text-white '>{totalAddresses && totalAddresses.total && totalAddresses.total.toLocaleString()}</p></div>  </div>
-                    <div className='flex gap-4 items-center'><MdCurrencyExchange className='text-white h-10 w-10' />  <div className=' text-lg  text-gray-300'><p className='flex justify-start text-xs'> Total Curculating Supply
+                    <div className='flex gap-4 items-center'><MdCurrencyExchange className='text-white h-10 w-10' />  <div className=' text-lg  text-gray-300'><p className='flex justify-start text-xs'> TOTAL CIRCULATING SUPPLY
                     </p> <p className='flex justify-start text-white '>{supply && supply.toLocaleString().substring(0, 13)} RON</p></div>  </div>
                     <div className='flex items-center'>TRANSACTION HISTORY IN 14 DAYS  </div>
                 </div>

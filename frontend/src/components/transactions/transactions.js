@@ -99,15 +99,15 @@ const Transactions = () => {
                                 <div className='flex  items-center border-[0.5px]  h-10 bg-black rounded-full'>
                                     <FaExchangeAlt className=' h-5 w-10 ' />
                                 </div>
-                                <div className='hover:underline'>
+                                <Link to={`/txns/${transact.hash}`} className='hover:underline'>
 
                                         {(transact.hash).substring(0,7)}...{(transact.hash).substring(60,transact.hash.length)}
 
-                                </div>
+                                </Link>
                             </td>
                             <td>
 
-                                <p className='hover:underline'>{transact.block_number}</p>
+                            <Link to={`/blocks/${transact.block_number}`} className='hover:underline'>{transact.block_number}</Link>
                             </td>
                             <td>
                                 <p className='hover:underline'>{(transact.from).substring(0,7)}...{(transact.from).substring(35,transact.from.length)}</p>

@@ -98,11 +98,11 @@ const Blocks = () => {
                                 <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>
                                     <BsBox className=' h-5 w-10 ' />
                                 </div>
-                                <div className='hover:underline'>
+                                <Link to={`/blocks/${block.number}`} className='hover:underline'>
 
                                         {block.number}
 
-                                </div>
+                                </Link>
                             </td>
                             <td>
                                 <div className='flex gap-2 justify-center'>
