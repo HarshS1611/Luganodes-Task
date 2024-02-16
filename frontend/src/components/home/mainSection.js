@@ -115,11 +115,11 @@ function MainSection() {
 
     return (
         <div className="flex flex-col gap-4 text-white py-10">
-            <p className='flex justify-start text-[30px] font-semibold'>The Ronin Blockchain Explorer</p>
+            <p className='flex justify-start md:text-[30px] font-semibold'>The Ronin Blockchain Explorer</p>
 
             <SearchComponent />
             <div>
-                <div className='grid grid-rows-2 rounded-xl grid-flow-col gap-4 mt-5 xl:mt-10 p-5 bg-gray-800'>
+                <div className='grid grid-rows-6 md:grid-rows-2 rounded-xl grid-flow-col gap-4 mt-5 xl:mt-10 p-5 bg-gray-800'>
                     <div className='flex gap-4 items-center'> <MdOutlineAttachMoney className='text-white h-10 w-10' /> <div className='lg:text-lg  text-gray-300'><p className='text-xs'> RONIN PRICE </p> <p className='flex text-sm lg:text-lg justify-start text-white '>${price && (price + 0.265).toLocaleString().substring(0, 4)}</p></div> </div>
                     <div className='flex gap-4 items-center'> <CiGlobe className='text-white h-10 w-10' />  <div className='lg:text-lg  text-gray-300'><p className='flex justify-start text-xs'> MARKET CAP
                     </p> <p className='flex justify-start text-sm lg:text-lg text-white '>${supply && ((price + 0.265) * parseFloat(supply)).toLocaleString()}

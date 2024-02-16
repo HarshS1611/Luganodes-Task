@@ -72,7 +72,7 @@ const Blocks = () => {
     console.log(blocks)
     return (
         <>
-            <table class="table-auto bg-gray-800 rounded-lg text-white w-full ">
+            <table class="table-auto overflow-auto bg-gray-800 rounded-lg text-white w-full ">
                 <thead className="rounded-lg border-b-[1px] w-full">
                     <tr className="  w-full">
                         <th className="flex justify-start py-4 ml-5 ">Latest Blocks</th>
@@ -82,7 +82,7 @@ const Blocks = () => {
                 <tbody>
                     {blocks && blocks.results && blocks.results.map((block, index) => {
                         // console.log(block)
-                        return (<tr key={index} className="border-b-[0.7px] border-black  px-4">
+                        return (<tr key={index} className="border-b-[0.7px] border-black text-xs md:text-lg md:px-4">
                             <td className="flex py-5 flex-row gap-4 justify-start mx-5">
                                 <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>
                                     <BsBox className=' h-5 w-10 ' />
@@ -92,8 +92,8 @@ const Blocks = () => {
 
                                         #{block.number}
                                     </Link>
-                                    <Link to={`/address/${block.miner}`} className="flex gap-2 justify-start">
-                                    Validated by <p className='hover:underline'>{(block.miner).substring(0, 4)}...{(block.miner).substring(38, block.miner.length)}</p>
+                                    <Link to={`/address/${block.miner}`} className="hidden md:block flex gap-2 justify-start">
+                                    <p className='flex '>Validated by {(block.miner).substring(0, 4)}...{(block.miner).substring(38, block.miner.length)}</p>
                                     </Link>
                                 </div>
                             </td>

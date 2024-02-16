@@ -74,7 +74,7 @@ const BlockInfo = () => {
     console.log(blocks)
     return (
         <>
-            <div className='text-white flex flex-col gap-5 justify-start w-full'>
+            <div className='text-white overflow-hidden flex flex-col gap-5 justify-start w-full'>
                 <div className='flex gap-5'>
                     <p className='flex justify-start text-4xl font-bold'>Block </p>
                     <p className='flex items-center  px-4 text-md bg-green-600 rounded-full'>#{blocks.number}</p>
@@ -88,7 +88,7 @@ const BlockInfo = () => {
                                 ∙ {new Date(blocks.timestamp * 1000).toLocaleString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short', timeZone: 'Asia/Kolkata' })}
                             </div>
                         </div>
-                        <div className='my-5 '>
+                        <div className='my-5 overflow-auto'>
                             <div className='flex py-4 justify-start gap-6'>Block Height <p>{blocks.number}</p></div>
                             {/* <div className=''><FaArrowDown /></div> */}
                             <div className='flex py-4 justify-start gap-10'>Validated By <p>{blocks.miner}</p></div>

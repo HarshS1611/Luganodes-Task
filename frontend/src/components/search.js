@@ -158,7 +158,7 @@ function SearchComponent() {
                         </ul>
                     </div> */}
 
-                    <div class="relative w-[80%] lg:w-[70%]">
+                    <div class="relative w-full md:w-[80%] lg:w-[70%]">
 
                         <input type="search" id="default-search"
                             className="block rounded-xl w-full p-4 text-xs lg:text-sm text-gray-900 border border-gray-300  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search by Address / Txn Hash / Block etc."
@@ -180,10 +180,10 @@ function SearchComponent() {
 
                 </div>
                 {searchQuery && <div>{searchResult ? (
-                    <div className="flex justify-start w-full text-white   shadow">
+                    <div className="flex justify-start  md:w-full text-white   shadow">
                         <div className='flex justify-start bg-gray-800 rounded-r-lg rounded-b-lg'>
-                            <div className='flex  items-start w-full'>{searchType === 'block' ? (<>
-                                <Link to={`/blocks/${searchResult.number}`} className="flex py-5 flex-row gap-4 justify-start mx-5">
+                            <div className='flex  items-start w-72 md:w-full overflow-hidden md:w-full'>{searchType === 'block' ? (<>
+                                <Link to={`/blocks/${searchResult.number}`} className="flex py-2 overflow-hidden md:py-5 flex-row gap-2 md:gap-4 justify-start mx-5">
                                     <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>
                                         <BsBox className=' h-5 w-10 ' />
                                     </div>
@@ -201,7 +201,7 @@ function SearchComponent() {
                                     </div>
 
                                 </Link></>)
-                                : (<>{searchType === 'address' ? (<Link to={`/address/${searchResult.address}`} className='flex items-center p-4 gap-5'><MdAccountBalanceWallet /> <p>{searchResult.address}</p><div className='flex items-center'>
+                                : (<>{searchType === 'address' ? (<Link to={`/address/${searchResult.address}`} className='flex overflow-hidden items-center p-2 md:p-4 gap-2 text-xs md:text-md lg:text-lg md:gap-5'><MdAccountBalanceWallet /> <p>{searchResult.address}</p><div className='flex items-center'>
                                     <IoIosReturnLeft className='font-bold h-6 w-6' />
                                 </div></Link>) : (<Link to={`/txns/${searchResult.hash}`} className="flex py-5 flex-row gap-6 justify-start mx-5">
                                     <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>

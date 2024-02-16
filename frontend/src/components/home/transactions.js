@@ -71,7 +71,7 @@ const Transactions = () => {
     console.log(transactions)
     return (
         <>
-            <table class="table-auto bg-gray-800 rounded-lg text-white w-full ">
+            <table class="table-auto overflow-auto bg-gray-800 rounded-lg text-white w-full ">
                 <thead className="rounded-lg border-b-[1px] w-full">
                     <tr className="  w-full">
                         <th className="flex justify-start py-4 ml-5 ">Latest Transactions</th>
@@ -81,7 +81,7 @@ const Transactions = () => {
                 <tbody>
                     {transactions && transactions.results && transactions.results.map((transact, index) => {
                         // console.log(block)
-                        return (<tr key={index} className="border-b-[0.7px] border-black  px-4">
+                        return (<tr key={index} className="border-b-[0.7px] border-black text-xs md:text-lg md:px-4">
                             <td className="flex py-5 flex-row gap-4 justify-start mx-5">
                                 <div className='flex items-center border-[1px] h-10 bg-black rounded-full'>
                                     <FaExchangeAlt className=' h-5 w-10 ' />
@@ -91,7 +91,7 @@ const Transactions = () => {
 
                                     {(transact.hash).substring(0,7)}...{(transact.hash).substring(60,transact.hash.length)}
                                     </Link>
-                                    <p className="flex gap-2 justify-start">
+                                    <p className="hidden md:block flex gap-2 justify-start">
                                     from <Link to={`/address/${transact.from}`}  className='hover:underline'>{(transact.from).substring(0,4)}...{(transact.from).substring(38,transact.from.length)}</Link>  to <Link to={`/address/${transact.to}`}  className='hover:underline'>{(transact.to).substring(0,4)}...{(transact.to).substring(38,transact.to.length)}</Link>
                                     </p>
                                 </div>

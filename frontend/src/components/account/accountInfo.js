@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 const AccountInfo = () => {
 
     const [transactions, setTransactions] = useState([]);
-    const [accountInfo,setAccountInfo] = useState([])
+    const [accountInfo, setAccountInfo] = useState([])
     const { address } = useParams();
 
     console.log(address)
@@ -65,12 +65,12 @@ const AccountInfo = () => {
         };
 
         axios(config2)
-        .then((response) => {
-            setAccountInfo(response.data)
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((response) => {
+                setAccountInfo(response.data)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
 
 
@@ -99,15 +99,16 @@ const AccountInfo = () => {
     console.log(accountInfo)
     return (
         <>
-        <div className='text-white text-xl'>
-            <div className='flex gap-5'>Address : <p>{accountInfo && accountInfo.result && accountInfo.result.address}</p></div>
-            <div className='flex gap-5'>Balance : <p>{accountInfo && accountInfo.result && (Math.floor(accountInfo.result.balance)).toLocaleString()} RON</p></div>        </div>
+            <div className='text-white text-xs md:text-xl'>
+                <div className='flex gap-2 md:gap-5'>Address: <p>{accountInfo && accountInfo.result && accountInfo.result.address}</p></div>
+                <div className='flex gap-2 md:gap-5 text-xs md:text-xl'>Balance: <p>{accountInfo && accountInfo.result && (Math.floor(accountInfo.result.balance)).toLocaleString()} RON</p></div>        </div>
             <div className='text-white flex flex-col justify-start w-full'>
-                <p className='flex justify-start text-4xl font-bold'>Transactions</p>
-                <p className='flex justify-start'>Total {transactions && transactions.total && (transactions.total).toLocaleString()} transactions by {transactions && transactions.results && transactions?.results.length > 0 && transactions?.results[0]?.from}</p>
+                <p className='flex justify-start text-md md:text-4xl font-bold'>Transactions</p>
+                <p className='flex justify-start text-xs md:text-xl'>Total {transactions && transactions.total && (transactions.total).toLocaleString()} transactions by {transactions && transactions.results && transactions?.results.length > 0 && transactions?.results[0]?.from}</p>
             </div>
-            <table class="table-auto bg-gray-800 rounded-xl text-white w-full ">
-                <thead className="border-b-[1px] w-full">
+           <div className='overflow-auto'>
+           <table className=" table-auto bg-gray-800 rounded-xl text-white w-full ">
+                <thead className=" border-b-[1px] w-full">
                     <tr className="text-gray-400 w-max">
                         <th className="flex  py-2 w-fit justify-start ml-5 "> Transaction Hash</th>
                         <th className=""> Block</th>
@@ -160,7 +161,8 @@ const AccountInfo = () => {
 
                 </tbody>
             </table>
-            </>
+           </div>
+        </>
     )
 }
 

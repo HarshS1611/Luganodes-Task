@@ -6,9 +6,9 @@ function TransactionDetails() {
   return (
     <div className="home">
       <Navbar />
-      <div className='px-10 lg:px-32 xl:px-60'>
+      <div className='px-4 md:px-10 lg:px-32 xl:px-60'>
         {/* <SearchComponent /> */}
-        <div className='flex gap-10 py-10'>
+        <div className='flex overflow-hidden gap-10 py-10'>
           <TransactionInfo />
         </div>
       </div>

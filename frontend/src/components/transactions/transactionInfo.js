@@ -74,12 +74,12 @@ const TransactionInfo = () => {
     console.log(transactions)
     return (
         <>
-            <div className='text-white flex flex-col gap-5 justify-start w-full'>
+            <div className='text-white overflow-hidden  flex flex-col gap-5 justify-start w-full'>
                 <div className='flex gap-5'>
-                    <p className='flex justify-start text-4xl font-bold'>Transaction </p>
+                    <p className='flex justify-start text-lg md:text-4xl font-bold'>Transaction </p>
                     <p className='flex items-center  px-4 text-md bg-green-600 rounded-full'>Success</p>
                 </div>
-                <p className='flex justify-start  text-gray-400'> {transactions && transactions.hash && (transactions.hash)}</p>
+                <p className='flex justify-start text-xs md:text-lg text-gray-400'> {transactions && transactions.hash && (transactions.hash)}</p>
                 <div className='py-5 '>
                     <div className='flex flex-col bg-gray-800  justify-start rounded-xl py-2 px-5 border-black shadow-lg text-white'>
                         <div className='flex justify-between border-gray-600 border-b-[1px]'>
@@ -88,10 +88,10 @@ const TransactionInfo = () => {
                                 ∙ {new Date(transactions.timestamp * 1000).toLocaleString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short', timeZone: 'Asia/Kolkata' })}
                             </div>
                         </div>
-                        <div className='my-5 border-b-[1px] border-gray-600'>
-                            <div className='flex py-4 justify-start gap-6'>From <p>{transactions.from}</p></div>
+                        <div className='my-5 overflow-auto border-b-[1px] border-gray-600'>
+                            <div className='flex py-4 justify-start gap-2 md:gap-6'>From <p>{transactions.from}</p></div>
                             <div className=''><FaArrowDown /></div>
-                            <div className='flex py-4 justify-start gap-10'>To <p>{transactions.to}</p></div>
+                            <div className='flex py-4 justify-start gap-4 md:gap-10'>To <p>{transactions.to}</p></div>
 
                         </div>
                         <div className='border-b-[1px] border-gray-600'>

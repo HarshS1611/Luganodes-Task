@@ -5,9 +5,9 @@ import SearchComponent from '../components/search';
 
 const AllBlocks = () => {
     return (
-    <div className="home">
+    <div className="home  overflow-hidden">
       <Navbar />
-      <div className='px-10 lg:px-20 xl:px-60  py-10'>
+      <div className='px-4 md:px-10 lg:px-20 xl:px-60  py-10'>
         <SearchComponent />
         <div className='flex flex-col gap-10 py-10'>
           <Blocks />
