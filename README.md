@@ -1,8 +1,8 @@
 # Project Name
-Luganodes-Task (Ronin Explorer
+Luganodes-Task (Ronin Explorer)
 
 # Description
-This project utilizes Create React App for frontend development.
+This project utilizes Create React App for a transaction explorer for the Ronin blockchain to track blocks and transactions efficiently. The application provides a user-friendly interface for exploring and querying transactions on the Ronin blockchain.
 
 # Setup Instructions
 1. Clone the repository
@@ -13,8 +13,8 @@ This project utilizes Create React App for frontend development.
 
 # Running with Docker in local
 1. Clone the repo and then navigate to `Luganodes-Task`
-2. Make sure you have `docker engine` running by checking `docker` on the terminal
-3. Run the docker compose file command `docker-compose up` on the terminal
+2. Make sure you have `docker engine` running by checking `docker` command on the terminal
+3. Run the `docker-compose.yaml` file command `docker-compose up` on the terminal
 4. Access the application at [http://localhost:3000](http://localhost:3000)
 
 # API Documentation
