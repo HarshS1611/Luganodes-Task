@@ -9,7 +9,7 @@ const AccountInfo = () => {
     const [accountInfo, setAccountInfo] = useState([])
     const { address } = useParams();
 
-    console.log(address)
+    // console.log(address)
 
     const timeAgo = (timestamp) => {
         const seconds = Math.floor((new Date() - new Date(timestamp * 1000)) / 1000);
@@ -39,9 +39,6 @@ const AccountInfo = () => {
     };
 
     const BlockAPI = () => {
-
-
-
         console.log(address)
 
         let config = {
@@ -87,14 +84,11 @@ const AccountInfo = () => {
 
     useEffect(() => {
 
-        if (transactions.length <= 0) {
+        if (transactions.length === 0 || address !== accountInfo.result.address) {
             BlockAPI();
         }
-
-
-
-
-    }, [transactions]);
+        
+    }, [accountInfo,address]);
 
     console.log(accountInfo)
     return (
@@ -142,10 +136,10 @@ const AccountInfo = () => {
                                 <Link to={`/blocks/${transact.block_number}`} className='hover:underline'>{transact.block_number}</Link>
                             </td>
                             <td>
-                                <p className='hover:underline'>{(transact.from).substring(0, 4)}...{(transact.from).substring(35, transact.from.length)}</p>
+                            <Link to={`/address/${transact.from}`} className='hover:underline'>{(transact.from).substring(0, 4)}...{(transact.from).substring(35, transact.from.length)}</Link>
                             </td>
                             <td>
-                                <p className='hover:underline'>{(transact.to).substring(0, 4)}...{(transact.to).substring(35, transact.to.length)}</p>
+                            <Link to={`/address/${transact.to}`} className='hover:underline'>{(transact.to).substring(0, 4)}...{(transact.to).substring(35, transact.to.length)}</Link>
                             </td>
                             <td>
                                 {(parseFloat(transact.value, 16) / 1e18)} RON

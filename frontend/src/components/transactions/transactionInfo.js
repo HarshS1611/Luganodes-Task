@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { FaArrowDown } from "react-icons/fa";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
 const TransactionInfo = () => {
 
@@ -89,9 +89,9 @@ const TransactionInfo = () => {
                             </div>
                         </div>
                         <div className='my-5 overflow-auto border-b-[1px] border-gray-600'>
-                            <div className='flex py-4 justify-start gap-2 md:gap-6'>From <p>{transactions.from}</p></div>
+                            <div className='flex py-4 justify-start gap-2 md:gap-6'>From <Link to={`/address/${transactions.from}`}>{transactions.from}</Link></div>
                             <div className=''><FaArrowDown /></div>
-                            <div className='flex py-4 justify-start gap-4 md:gap-10'>To <p>{transactions.to}</p></div>
+                            <div className='flex py-4 justify-start gap-4 md:gap-10'>To <Link to={`/address/${transactions.from}`}>{transactions.to}</Link></div>
 
                         </div>
                         <div className='border-b-[1px] border-gray-600'>

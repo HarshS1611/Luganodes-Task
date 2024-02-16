@@ -111,7 +111,7 @@ const Blocks = () => {
                                 </td>
                                 <td>
                                     <div className='flex gap-2 justify-center'>
-                                        Validated by <p className='hover:underline'>{(block.coinbase).substring(0, 4)}...{(block.coinbase).substring(38, block.coinbase.length)}</p>
+                                        Validated by <Link to={`/address/${block.coinbase}`} className='hover:underline'>{(block.coinbase).substring(0, 4)}...{(block.coinbase).substring(38, block.coinbase.length)}</Link>
 
                                     </div>
                                 </td>

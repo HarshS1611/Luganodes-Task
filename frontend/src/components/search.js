@@ -8,11 +8,6 @@ import { IoIosReturnLeft } from "react-icons/io";
 
 function SearchComponent() {
 
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [price, setPrice] = useState(0);
-    const [latestBlock, setLatestBlock] = useState(0);
-    const [totalAddresses, setTotalAddresses] = useState(0);
-    const [totalTransaction, setTotalTransaction] = useState(0);
     const [searchType, setSearchType] = useState('');
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -34,32 +29,6 @@ function SearchComponent() {
         }
     };
 
-    const timeAgo = (timestamp) => {
-        const seconds = Math.floor((new Date() - new Date(timestamp * 1000)) / 1000);
-
-        let interval = seconds / 31536000;
-
-        if (interval > 1) {
-            return Math.floor(interval) + " years ago";
-        }
-        interval = seconds / 2592000;
-        if (interval > 1) {
-            return Math.floor(interval) + " months ago";
-        }
-        interval = seconds / 86400;
-        if (interval > 1) {
-            return Math.floor(interval) + " days ago";
-        }
-        interval = seconds / 3600;
-        if (interval > 1) {
-            return Math.floor(interval) + " hours ago";
-        }
-        interval = seconds / 60;
-        if (interval > 1) {
-            return Math.floor(interval) + " mins ago";
-        }
-        return Math.floor(seconds) + " secs ago";
-    };
 
     const GetInfo = (type, query) => {
 
@@ -88,6 +57,7 @@ function SearchComponent() {
                 break;
             case 'latestTransaction':
                 config.url = `https://api-gateway.skymavis.com/explorer/txs?size=5`;
+                break;
             default:
                 console.log('Unknown search type');
                 return;
@@ -111,22 +81,12 @@ function SearchComponent() {
         const type = determineSearchType(searchQuery);
         setSearchType(type)
         if (type !== 'unknown') {
-            GetInfo(type, searchQuery); // Pass type and searchQuery as arguments
+            GetInfo(type, searchQuery); 
         } else {
             console.log('Invalid search query');
         }
     };
 
-    // const handleSearch = (e) => {
-    //     e.preventDefault();
-    //     const type = determineSearchType(searchQuery);
-    //     setSearchType(type)
-    //     if (type !== 'unknown') {
-    //         GetInfo(type, searchQuery); // Pass type and searchQuery as arguments
-    //     } else {
-    //         console.log('Invalid search query');
-    //     }
-    // };
 
     useEffect(() => {
         handleSearchChange();

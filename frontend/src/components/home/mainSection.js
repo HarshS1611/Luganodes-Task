@@ -11,12 +11,13 @@ import SearchComponent from '../search';
 
 function MainSection() {
 
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [price, setPrice] = useState(0);
     const [latestBlock, setLatestBlock] = useState(0);
     const [totalAddresses, setTotalAddresses] = useState(0);
     const [totalTransaction, setTotalTransaction] = useState(0);
     const [supply, setSupply] = useState(0);
+
+
 
     const GetInfo = () => {
 
@@ -109,9 +110,10 @@ function MainSection() {
         if (!latestBlock) {
             GetInfo();
         }
-    }, []);
+    }, [latestBlock]);
 
     console.log(price, supply)
+
 
     return (
         <div className="flex flex-col gap-4 text-white py-10">
@@ -120,9 +122,9 @@ function MainSection() {
             <SearchComponent />
             <div>
                 <div className='grid grid-rows-6 md:grid-rows-2 rounded-xl grid-flow-col gap-4 mt-5 xl:mt-10 p-5 bg-gray-800'>
-                    <div className='flex gap-4 items-center'> <MdOutlineAttachMoney className='text-white h-10 w-10' /> <div className='lg:text-lg  text-gray-300'><p className='text-xs'> RONIN PRICE </p> <p className='flex text-sm lg:text-lg justify-start text-white '>${price && (price + 0.265).toLocaleString().substring(0, 4)}</p></div> </div>
+                    <div className='flex gap-4 items-center'> <MdOutlineAttachMoney className='text-white h-10 w-10' /> <div className='lg:text-lg  text-gray-300'><p className='text-xs'> RONIN PRICE </p> <p className='flex text-sm lg:text-lg justify-start text-white '>${price && (price).toLocaleString().substring(0, 4)}</p></div> </div>
                     <div className='flex gap-4 items-center'> <CiGlobe className='text-white h-10 w-10' />  <div className='lg:text-lg  text-gray-300'><p className='flex justify-start text-xs'> MARKET CAP
-                    </p> <p className='flex justify-start text-sm lg:text-lg text-white '>${supply && ((price + 0.265) * parseFloat(supply)).toLocaleString()}
+                    </p> <p className='flex justify-start text-sm lg:text-lg text-white '>${supply && ((price) * parseFloat(supply)).toLocaleString()}
                         </p></div></div>
                     <div className='flex gap-4 items-center'> <AiOutlineTransaction className='text-white h-10 w-10' />
                         <div className='lg:text-lg  text-gray-300'><p className='flex justify-start text-xs'>TRANSACTIONS
@@ -133,7 +135,7 @@ function MainSection() {
                     </p> <p className='flex justify-start text-white text-sm lg:text-lg'>{totalAddresses && totalAddresses.total && totalAddresses.total.toLocaleString()}</p></div>  </div>
                     <div className='flex gap-4 items-center'><MdCurrencyExchange className='text-white h-10 w-10' />  <div className=' lg:text-lg  text-gray-300'><p className='flex justify-start text-xs'> TOTAL CIRCULATING SUPPLY
                     </p> <p className='flex justify-start text-white text-sm lg:text-lg'>{supply && supply.toLocaleString().substring(0, 13)} RON</p></div>  </div>
-                    <div className='hidden xl:block flex items-center'>TRANSACTION HISTORY IN 14 DAYS  </div>
+               
                 </div>
             </div>
 

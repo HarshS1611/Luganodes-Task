@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link,useParams } from 'react-router-dom';
-import { FaArrowDown } from "react-icons/fa";
 
 const BlockInfo = () => {
 
@@ -91,7 +90,7 @@ const BlockInfo = () => {
                         <div className='my-5 overflow-auto'>
                             <div className='flex py-4 justify-start gap-6'>Block Height <p>{blocks.number}</p></div>
                             {/* <div className=''><FaArrowDown /></div> */}
-                            <div className='flex py-4 justify-start gap-10'>Validated By <p>{blocks.miner}</p></div>
+                            <div className='flex py-4 justify-start gap-10'>Validated By <Link to={`/address/${blocks.miner}`}>{blocks.miner}</Link></div>
                             <div className='flex py-4 justify-start gap-10'>Gas Used <p>{(blocks.gas_used)}</p></div>
 
                             <div className='flex py-4 justify-start gap-10'>Gas Limit <p>{(blocks.gas_limit)}</p></div>

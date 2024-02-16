@@ -8,6 +8,7 @@ const Transactions = () => {
     const [transactions, setTransactions] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
+    
 
     const timeAgo = (timestamp) => {
         const seconds = Math.floor((new Date() - new Date(timestamp * 1000)) / 1000);
@@ -113,10 +114,10 @@ const Transactions = () => {
                                     <Link to={`/blocks/${transact.blockNumber}`} className='hover:underline'>{transact.blockNumber}</Link>
                                 </td>
                                 <td>
-                                    <p className='hover:underline'>{(transact.from).substring(0, 4)}...{(transact.from).substring(38, transact.from.length)}</p>
+                                <Link to={`/address/${transact.from}`} className='hover:underline'>{(transact.from).substring(0, 4)}...{(transact.from).substring(38, transact.from.length)}</Link>
                                 </td>
                                 <td>
-                                    <p className='hover:underline'>{(transact.to).substring(0, 4)}...{(transact.to).substring(38, transact.to.length)}</p>
+                                <Link to={`/address/${transact.from}`} className='hover:underline'>{(transact.to).substring(0, 4)}...{(transact.to).substring(38, transact.to.length)}</Link>
                                 </td>
                                 <td>
                                     {parseInt(transact.gasPrice, 16)} GWEI
